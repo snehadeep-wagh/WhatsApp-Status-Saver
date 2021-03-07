@@ -8,32 +8,26 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.tabs.TabLayoutMediator
-import com.techstein.whatsappstatussaver.adapters.ImageAdapter
-import com.techstein.whatsappstatussaver.adapters.VideoAdapter
 import com.techstein.whatsappstatussaver.adapters.ViewPagerAdapter
-import com.techstein.whatsappstatussaver.fragments.ImageFragment
-import com.techstein.whatsappstatussaver.fragments.VideoFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_image.*
 
 
 class MainActivity : AppCompatActivity() {
-    var isDark: Boolean = false
-    lateinit var sharedPrefEditor: SharedPreferences.Editor
+    private var isDark: Boolean = false
+    private lateinit var sharedPrefEditor: SharedPreferences.Editor
+
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         setSupportActionBar(toolbarId)
+
+        // SharedPreference for Theme-----------------------
         val sharedPref = getSharedPreferences("Setting", 0)
         sharedPrefEditor = sharedPref.edit()
         isDark = sharedPref.getBoolean("DarkMode", false)

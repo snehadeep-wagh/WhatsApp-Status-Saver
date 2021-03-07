@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.techstein.whatsappstatussaver.R
 import com.techstein.whatsappstatussaver.adapters.ImageAdapter
 import com.techstein.whatsappstatussaver.constants.MyConstants
-import kotlinx.android.synthetic.main.fragment_image.*
 import kotlinx.android.synthetic.main.fragment_image.view.*
 import java.io.File
 import java.util.*
@@ -31,22 +30,14 @@ class ImageFragment : Fragment() {
     fun getImageData(): ArrayList<String>
     {
         val listOfImages = ArrayList<String>()
-
         val file: File = MyConstants.STATUS_LOC
         val currentList = file.listFiles()
 
-        Log.i("file", file.toString())
-        Log.i("path", file.absolutePath.toString())
-
         if(currentList != null && currentList.isNotEmpty())
         {
+            // Sort Array----------------------
             Arrays.sort(currentList)
-            Log.i("loc size", currentList.size.toString())
-        }
 
-        if(currentList != null && currentList.isNotEmpty())
-        {
-            Log.i("loc", "Entered loop")
             for(image in currentList)
             {
                 if(image.name.endsWith(".jpg") || image.name.endsWith(".jpeg") || image.name.endsWith(".png"))
@@ -63,5 +54,4 @@ class ImageFragment : Fragment() {
 
         return listOfImages
     }
-
 }

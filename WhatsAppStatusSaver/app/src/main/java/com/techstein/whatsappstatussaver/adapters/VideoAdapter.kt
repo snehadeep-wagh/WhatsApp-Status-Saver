@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.techstein.whatsappstatussaver.Model
 import com.techstein.whatsappstatussaver.R
-import kotlinx.android.synthetic.main.fragment_video.view.*
 import kotlinx.android.synthetic.main.status_item_view.view.*
 
 class VideoAdapter(private val context: Context, private val oldList: ArrayList<Model>): RecyclerView.Adapter<VideoAdapter.StatusViewHolder>() {

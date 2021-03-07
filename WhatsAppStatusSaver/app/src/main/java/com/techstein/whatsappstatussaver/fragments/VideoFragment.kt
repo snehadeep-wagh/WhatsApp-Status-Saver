@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.net.toUri
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.techstein.whatsappstatussaver.R
 import com.techstein.whatsappstatussaver.adapters.VideoAdapter
@@ -29,12 +28,7 @@ class VideoFragment : Fragment() {
         return view
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        view!!.progressBar.isVisible = true
-//    }
-
-    fun getVideoData(): ArrayList<Model> {
+    private fun getVideoData(): ArrayList<Model> {
         val listOfVideos = ArrayList<Model>()
 
         val path = MyConstants.STATUS_LOC
@@ -47,24 +41,15 @@ class VideoFragment : Fragment() {
 
         if(lastFile != null && lastFile.isNotEmpty())
         {
-            Log.i("loc", "Entered loop")
             for(video in lastFile)
             {
                 if(video.name.endsWith(".mp4") || video.name.endsWith(".gif") || video.name.endsWith("avi") || video.name.endsWith(".mkv"))
                 {
-
                     val mpl: MediaPlayer = MediaPlayer.create(context!!, video.absolutePath.toUri())
                     val videoDuration: String = "00:" + (mpl.duration/1000).toString()
 
                     val model = Model(video.absolutePath, videoDuration)
                     listOfVideos.add(model)
-
-
-                    Log.i("data", video.name)
-                }
-                else
-                {
-                    Log.i("data", video.name)
                 }
             }
         }
@@ -73,7 +58,14 @@ class VideoFragment : Fragment() {
             Toast.makeText(activity, "No status found!", Toast.LENGTH_SHORT).show()
         }
 
+
         return listOfVideos
     }
+
+
+//    override fun onStart() {
+//        super.onStart()
+//        view!!.progressBar.isVisible = true
+//    }
 
 }

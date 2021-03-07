@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.techstein.whatsappstatussaver.R
 
-class ImageAdapter(val context: Context, val listOfImages: ArrayList<String>): RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
+class ImageAdapter(private val context: Context, private val listOfImages: ArrayList<String>): RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageId = itemView.findViewById<ImageView>(R.id.statusImageId)
