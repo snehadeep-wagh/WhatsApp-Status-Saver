@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".fragments.DownloadsFragment"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:id="@+id/downloadRefreshId">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/DownloadAdapterId"
-        tools:listitem="@layout/status_item_view"
-        />
+        android:layout_height="wrap_content"
+        tools:context=".fragments.DownloadsFragment"
+        android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Image"
+                android:backgroundTint="?attr/colorPrimary"
+                android:padding="12dp"
+                android:layout_gravity="start"
+                android:id="@+id/Download_image_buttonId"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="50dp"
+                />
+
+            <Button
+                android:id="@+id/Download_video_buttonId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Video"
+                android:backgroundTint="?attr/colorPrimary"
+                android:padding="12dp"
+                android:layout_gravity="end"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="50dp"
+                />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/download_item_view"
+            android:id="@+id/DownloadAdapterId"
+            />
+    </LinearLayout>
 </LinearLayout>

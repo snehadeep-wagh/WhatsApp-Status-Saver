@@ -2,13 +2,17 @@ package com.techstein.whatsappstatussaver
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import com.google.android.material.tabs.TabLayoutMediator
@@ -19,13 +23,16 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private var isDark: Boolean = false
     private lateinit var sharedPrefEditor: SharedPreferences.Editor
-
-    @SuppressLint("CommitPrefEdits")
+    private lateinit var infoView: View
+    private lateinit var alertDialog: Dialog
+    @SuppressLint("CommitPrefEdits", "InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setSupportActionBar(toolbarId)
+
+        alertDialog = Dialog(this)
+        infoView = layoutInflater.inflate(R.layout.fragment_info, null)
 
         // SharedPreference for Theme-----------------------
         val sharedPref = getSharedPreferences("Setting", 0)
@@ -76,9 +83,9 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
             }
-            R.id.refreshId ->
+            R.id.infoId ->
             {
-                Toast.makeText(applicationContext, "Refreshed", Toast.LENGTH_LONG).show()
+                showInfo(infoView)
             }
         }
         return true
@@ -105,6 +112,17 @@ class MainActivity : AppCompatActivity() {
         {
             ActivityCompat.requestPermissions(this, listOfPermissions.toTypedArray(), 100)
         }
+    }
+
+    private fun showInfo(view: View)
+    {
+        alertDialog.setContentView(view)
+        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val but = alertDialog.findViewById<TextView>(R.id.okButtonId)
+        but.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        alertDialog.show()
     }
 
 }

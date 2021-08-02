@@ -42,7 +42,7 @@
                 android:layout_gravity="end|bottom"
                 android:layout_margin="7dp"
                 app:elevation="10dp"
-                android:id="@+id/downloadId"
+                android:id="@+id/downloadShareId"
                 />
         </androidx.cardview.widget.CardView>
     </FrameLayout>
